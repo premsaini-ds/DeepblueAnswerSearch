@@ -1,0 +1,319 @@
+.YxtHeader
+{
+  // insert YxtHeader scss here
+  
+
+
+}
+
+
+
+.navbar {
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* --------------------------------------------
+Header
+-----------------------------------------------*/
+.navbar{ font-family:"minerva-modern"; font-weight: 700; text-transform: uppercase; }
+.dropdown-menu a{ font-family:"minerva-modern"; font-weight: 400; text-transform: capitalize; color: rgb(0 0 0 / 99%);  }
+.centered-container { @apply mx-auto px-5 md:px-14 max-w-screen-xl;}
+
+.nav-item a:hover{ color: #3979ba;}
+.nav-item a:hover:after{border-color: #3979ba;}
+.nav-link.dropdown-toggle{ cursor: pointer;}
+.nav-link.dropdown-toggle:hover{ color: #3979ba;}
+
+
+.nav-item:first-child:after{content: none;}
+.nav-item a{ position: relative;}
+.nav-item a:after{
+  border-bottom-width: 1px;
+    bottom: -0.25rem;
+    content: '';
+    left: 0;
+    position: absolute;
+    transition-duration: .5s;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    width: 0;
+ 
+}
+.nav-item a:hover:after{ width: 100%;}
+
+.dropdown-item {
+    display: block;
+    padding-bottom: 0.25rem;
+    padding-left: 0.25rem;
+    padding-top: 0.25rem;
+}
+.dropdown-menu a {
+    color: rgb(0 0 0/99%);
+    font-weight: 400;
+    text-transform: capitalize;
+}
+.dropdown-menu .dropdown-item:after { content: none;}
+.btn {
+    align-items: center;
+    border-radius: 0.25rem;
+    border-width: 1px;
+    cursor: pointer;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    padding: 0.5rem;
+    text-align: center;
+    transform: translate(var(0),var(0)) rotate(var(0)) skewX(var(0)) skewY(var(0)) scaleX(var(1)) scaleY(var(1));
+    transition-duration: .15s;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+}
+.btn:focus, .btn:hover { background-color:#f9c85f; color: #3979ba;}
+.nav-item .btn:after{content: none;}
+.dropdown-toggle::after {
+  display: inline-block;
+  margin-left: 0.255em;
+  vertical-align: 0.255em;
+  content: "";
+  border-top: 0.3em solid;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0;  border-left: 0.3em solid transparent;}
+.wave-bg { z-index: -1;  top: 0;  pointer-events: none;  position: absolute;  left: 0; width: 100%; max-height: initial;}
+.wave-bg path { fill: #004b97;}
+.wave-bg .trawler { animation: waves 1.2s infinite alternate-reverse;}
+.brand-logo-container svg {  height: 12vw;  max-height: 177px;}
+
+.btn-outline-secondary{border: 1px solid #f9c85f;}
+#menu-responsive .border-\[\#f9c85f\]{border: 1px solid #f9c85f;}
+
+// popup css
+
+.modal_pop {
+  position: fixed;
+  top: 0;
+  bottom: 0; z-index: 999;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.modal_pop:target {
+  visibility: visible;
+  opacity: 1;
+}
+.popup_flight_travlDil {
+  margin: 70px auto;
+  background: #fff;
+  border-radius: 5px;
+  width:500px;
+  position: relative;
+  transition: all 2s ease-in-out;
+}
+.popup_flight_travlDil .close_flight_travelDl {
+  transition: all 200ms;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup_flight_travlDil .content_flightht_travel_dil {
+  max-height: 30%;
+  overflow: auto;
+}
+
+.modal_pop {
+  padding-top: 8px;
+}
+.content_flightht_travel_dil h5{ font-family: 'optimanormal'; font-size: 20px; color:#3979ba;}
+.content_flightht_travel_dil p{ font-size: 16px; color:#6c757d;}
+.modal_pop .modal-body svg{ fill: #808080;  width: 1em;   height: 1em;}
+.modal_pop .modal-body svg:hover{ fill: #1e1e1e;  width: 1em;   height: 1em;}
+.modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 1rem;
+}
+
+.modal-footer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0.75rem;
+    border-top: 1px solid #dee2e6;
+    border-bottom-right-radius: calc(0.3rem - 1px);
+    border-bottom-left-radius: calc(0.3rem - 1px);
+}
+
+.bootbox-cancel {margin-right: 25px;     text-transform: uppercase;   }
+.modal-footer a.btn {
+  color: #fff;
+  background-color: #004b97;
+  border-color: #004b97;
+  padding: 0.6rem 1rem;
+}
+.modal-footer a.btn:hover {
+  color: #fff;
+  background-color: #004080;
+  border-color: #003c79;
+}
+
+.svg-inline--fa {
+  display: inline-block;
+  font-size: inherit;
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@keyframes waves {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(0.35deg);
+    }
+  }
+
+    
+  @media screen and (max-width: 1023px){
+    #menu-responsive{ display: none; }
+    #menu-responsive.show{ display: block;    }
+    #menu-responsive a{display: block; font-size: 18px;}
+     
+    #menu-btn .when-closed:focus{ border: 3px solid #fff; border-radius: 4px;  }
+  
+    #menu-btn.active .when-opened{ display: block;   border: 3px solid #fff; border-radius: 4px;}
+      
+    #menu-btn.active .when-opened svg{ width: 15px; margin-right: 9px; }
+  
+    #menu-btn.active .when-closed{ display: none; }
+ .panel{width: 100%;}
+    #map{width: 100%; height: 320px; margin-top: 15px;}
+  }
+
+
+ 
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            display: none;
+            overflow: auto;
+            background-color: #000000;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+        }
+
+        .modal-window {
+            position: relative;
+            background-color: #FFFFFF;
+            width: 500px;
+            margin: 3.5% auto;
+            padding:0px; 
+            border-radius: 8px;
+        }
+
+        .modal-window.small {
+          width: 500px; white-space: normal;
+        }
+
+        .modal-window.large {
+            width: 500px;
+        }
+
+        .close {
+    top: 0;
+    left: 0;
+    color: rgba(0, 0, 0, 0.3);
+    height: 18px;
+    width: 18px;
+    font-size: 32px;
+    line-height: 18px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;        }
+
+        .close:hover,
+        .close:focus {
+            color: #000000;
+            cursor: pointer;
+        }
+
+        .open {
+            display: block;
+        }
+
+
+
+
+.content_flightht_travel_dil h5{font-family: 'optimanormal';}
+
+
+  
+   
+
+.popup-cta { margin-right: 10px;}
+
+
+  .popup-cta a{
+    margin-top: 11px;
+    background-color: #115eac;
+    color: white;
+  padding: 8px 8px 3px; 
+    min-width: 152px; 
+    align-items: center;
+    transition: transform 0.1s;
+    display: flex;
+    font-size: 13px; 
+    text-transform: uppercase; cursor:pointer;
+   
+    border-radius: 3px;    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+  .popup-cta a:hover{-ms-transform: scale(1.09);  -webkit-transform: scale(1.09);  transform: scale(1.09);}
+
+  .popup-cta .Icon-image {  margin-top: -4px;  width: 17px;  height: 17px; margin-right: 4px;}
+
+
+
+@media only screen and (min-width: 1024px) and (max-width: 1440px){
+.popup-cta a {   min-width: 132px;}
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px){
+.cta-location a {
+    min-width: 132px;
+}
+}
+
+
+@media screen and (max-width:640px){
+   .modal-window.small {
+              width:auto; margin: 5px; white-space: normal;
+        }
+
+}
+
+
+

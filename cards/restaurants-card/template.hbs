@@ -1,0 +1,488 @@
+ {{! Some partials here use the result.ordinal parameter, a reserved value automatically provided to
+    any card template. This value contains the ordinal of the card.
+    }}
+    <div class="card-box">
+        <div class="heading-bx">
+            <h2>{{> title }}</h2>
+            <div class="distance">{{> distance }}</div>
+        </div>
+        <div class="HitchhikerLocationStandard HitchhikerLocationCard {{cardName}} faq-sec">
+            <div class="images-bx">{{> image }}</div>
+            <div class="HitchhikerLocationStandard-contentWrapper locator-sec">
+                {{#if (any card.title card.distance)}}
+                <div class="address-hrs">
+                    <div class="HitchhikerLocationStandard-topRow">
+                        <div class="address-bx"> <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35"
+                                viewBox="0 0 35 35">
+                                <g id="address" transform="translate(0 0.41)">
+                                    <circle id="Ellipse_2" data-name="Ellipse 2" cx="17.5" cy="17.5" r="17.5"
+                                        transform="translate(0 -0.41)" fill="#115eac" />
+                                    <path id="Icon_awesome-map-marker-alt" data-name="Icon awesome-map-marker-alt"
+                                        d="M6.28,18.29C.983,10.61,0,9.822,0,7A7,7,0,1,1,14,7c0,2.822-.983,3.61-6.28,11.29a.875.875,0,0,1-1.439,0ZM7,9.916A2.917,2.917,0,1,0,4.083,7,2.917,2.917,0,0,0,7,9.916Z"
+                                        transform="translate(11 7.59)" fill="#fff" />
+                                </g>
+                            </svg>
+                            {{> addressa}}
+                        </div>
+                        {{> phone}}
+                        <div class="cta-box">
+                            <div class="cta-location readmore-button"> {{> ctaa }} </div>
+                            <div class="cta-location ctab"> {{> ctab }} </div>
+                        </div>
+                        <div class="cta-box">
+                            {{!-- <div class="cta-location readmore-button"> {{> ctad}} </div> --}}
+                             <div class=""> {{> popup}}</div>
+                            <div class="cta-location booka-button"> {{> ctae}} </div>
+                        </div>
+                    </div>
+                    {{/if}}
+                </div>
+                {{> thumbsfeedback card feedbackSubmitted=feedbackSubmitted}}
+            </div>
+        </div>
+        <div class="distance"> {{> distance }}</div>
+        {{> allhours }}
+        {{> allhoursacc }}
+    </div>
+    {{!-- popup --}}
+    {{#*inline 'popup'}}
+    {{#if (and card.CTA4.label card.CTA4.url)}}
+    <div class="popup-cta">
+        <a  data-target="simpleModal_3" data-toggle="modal"><img src="https://deepbluerestaurants.com/locations/images/order_list.png" alt="OrderList" class="Icon-image">
+ {{{card.CTA4.label}}}</a>
+    </div>
+    {{/if}}
+    <div id="simpleModal_3" class="modal">
+        <div class="modal-window small">
+            <div class="modal-body">
+            <a class="close" data-dismiss="modal" href="#">&times;</a>
+                <div class="content_flightht_travel_dil">
+                    <h5>Our online ordering site will open in a new tab.</h5>
+                    <p>Come back to this tab to continue browsing our main website.</p>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <a data-dismiss="modal" class="close_flight_travelDl bootbox-cancel" href="#">Cancel</a>
+                <a href="https://order.deepbluerestaurants.com/store/store-selection?app=online" target="_blank" class="order-btn btn btn-primary bootbox-accept">ORDER <svg
+                    class="svg-inline--fa fa-external-link-alt fa-w-16" aria-hidden="true" focusable="false"
+                    data-prefix="fas" data-icon="external-link-alt" role="img" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512" data-fa-i2svg="">
+                    <path fill="currentColor"
+                        d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z">
+                    </path>
+                </svg>
+            </a>
+                
+            </div>
+
+        </div>
+    </div>
+    {{/inline}}
+    {{#*inline 'CTA'}}
+    {{#if (all url label)}}
+    <div class="HitchhikerLocationStandard-{{ctaName}}">
+        <a class="HitchhikerCTA js-HitchhikerCTA{{#if modifiers}} {{modifiers}}{{/if}}"
+            href="{{#unless (isNonRelativeUrl url)}}{{@root.relativePath}}/{{/unless}}{{url}}"
+            data-eventtype="{{eventType}}" data-eventoptions='{{json eventOptions}}' target={{#if
+            target}}"{{target}}"{{else}}"_top"{{/if}} {{#if ariaLabel}}aria-label="{{ariaLabel}}" {{/if}}>
+            {{#if (any iconName iconUrl)}}
+            <div class="HitchhikerCTA-iconWrapper">
+                <div class="HitchhikerCTA-icon">
+                    {{> icons/iconPartial
+                    iconName=iconName
+                    iconUrl=(relativePathHandler url=iconUrl relativePath=@root.relativePath)
+                    }}
+                </div>
+            </div>
+            {{/if}}
+            <div class='HitchhikerCTA-iconLabel'>
+                {{label}}
+            </div>
+        </a>
+    </div>
+    {{/if}}
+    {{/inline}}
+    {{!-- addressa --}}
+    {{#*inline 'addressa'}}
+    {{#if (and card.line1 card.line2)}}
+    <div class="HitchhikerLocationStandard-address">
+        <p>{{{card.line1}}}</p>
+        <p>{{{card.line2}}}</p>
+        <p><span>{{{card.city}}}</span> <span>{{{card.postalCode}}}</span></p>
+    </div>
+    {{else}}
+    <div class="HitchhikerLocationStandard-address">
+        <p>{{{card.line1}}}</p>
+        <p>{{{card.city}}}</p>
+        <p>{{{card.postalCode}}}</p>
+    </div>
+    {{/if}}
+    {{/inline}}
+    {{!-- all ahours new --}}
+    {{#* inline "allhoursacc"}}
+    {{#if (any card.hours card.takeoutHours card.deliveryHours)}}
+    <div class="accordion-container">
+        {{#if (and card.hours card.reopenstatus1)}}
+        <div class="set-acc tabs">
+            <a class="test tablinks" href="javascript:void(0)" data-tabsid="mob-opening-hours-{{card.uid}}"
+                id="tab-mob-opening-hours-{{card.uid}}">Restaurant Hours</a>
+            <div id="content-mob-opening-hours-{{card.uid}}" class="content-acc wrapper_tabcontent no-data">
+                <img src="https://www.deepbluerestaurants.com/locations/images/lock.png" alt="closed" width="150" height="100"> 
+                <p>{{{card.reopenstatus1}}}</p>
+            </div>
+        </div>
+        {{else}}
+        {{#if card.hours}}
+          <div class="set-acc tabs">
+            <a class="test tablinks" href="javascript:void(0)" data-tabsid="mob-opening-hours-{{card.uid}}"
+                id="tab-mob-opening-hours-{{card.uid}}">Restaurant Hours</a>
+            <div id="content-mob-opening-hours-{{card.uid}}" class="content-acc wrapper_tabcontent">
+                <p>{{{card.hours}}}</p>
+            </div>
+        </div>
+          {{/if}}
+        {{/if}}
+        {{#if (and card.deliveryHours card.reopenstatus2)}}
+        <div class="set-acc tabs">
+            <a class="test tablinks" href="javascript:void(0)" data-tabsid="mob-delivery-hours-{{card.uid}}"
+                id="tab-mob-delivery-hours-{{card.uid}}">Delivery Hours</a>
+            <div id="content-mob-delivery-hours-{{card.uid}}" class="content-acc wrapper_tabcontent no-data">
+                               <img src="https://www.deepbluerestaurants.com/locations/images/lock.png" alt="closed" width="150" height="100"> 
+
+                <p>{{{card.reopenstatus2}}}</p>
+            </div>
+        </div>
+        {{else}}
+        {{#if card.deliveryHours}}
+         <div class="set-acc tabs">
+            <a class="test tablinks" href="javascript:void(0)" data-tabsid="mob-delivery-hours-{{card.uid}}"
+                id="tab-mob-delivery-hours-{{card.uid}}">Delivery Hours</a>
+            <div id="content-mob-delivery-hours-{{card.uid}}" class="content-acc wrapper_tabcontent">
+                <p>{{{card.deliveryHours}}}</p>
+            </div>
+        </div>
+        {{/if}}
+        {{/if}}
+        {{#if (and card.takeoutHours card.reopenstatus3)}}
+        <div class="set-acc tabs">
+            <a class="test tablinks" href="javascript:void(0)" data-tabsid="mob-takeaway-hours-{{card.uid}}"
+                id="tab-mob-takeaway-hours-{{card.uid}}">Takeaway Hours</a>
+            <div id="content-mob-takeaway-hours-{{card.uid}}" class="content-acc wrapper_tabcontent no-data">
+                <img src="https://www.deepbluerestaurants.com/locations/images/lock.png" alt="closed" width="150" height="100"> 
+                <p>{{{card.reopenstatus3}}}</p>
+            </div>
+        </div>
+         {{else}}
+            {{#if card.takeoutHours}}
+         <div class="set-acc tabs">
+            <a class="test tablinks" href="javascript:void(0)" data-tabsid="mob-takeaway-hours-{{card.uid}}"
+                id="tab-mob-takeaway-hours-{{card.uid}}">Takeaway Hours</a>
+            <div id="content-mob-takeaway-hours-{{card.uid}}" class="content-acc wrapper_tabcontent">
+                <p>{{{card.takeoutHours}}}</p>
+            </div>
+        </div> 
+        {{/if}}
+        {{/if}}
+    </div>
+    {{/if}}
+    {{/inline}}
+    {{!-- all ahours --}}
+    {{#* inline "allhours"}}
+    {{#if (any card.hours card.takeoutHours card.deliveryHours)}}
+    <section class=" for-desktop wrapper-{{card.uid}}">
+        <div class="content">
+            <!-- Tab links -->
+            <div class="tabs">
+                {{#if card.hours}}
+                <button class="tablinks" data-title={{card.uid}} data-tabsid="opening-hours-{{card.uid}}"
+                    id="tabs-opening-hours-{{card.uid}}">
+                    <p data-title="Opening Hours  ">Restaurant Hours</p>
+                </button>
+                {{/if}}
+                {{#if card.deliveryHours}}
+                <button class="tablinks" data-title={{card.uid}} data-tabsid="delivery-hours-{{card.uid}}"
+                    id="tabs-delivery-hours-{{card.uid}}">
+                    <p data-title="Delivery Hours">Delivery Hours</p>
+                </button>
+                {{/if}}
+                {{#if card.takeoutHours}}
+                <button class="tablinks" data-title={{card.uid}} data-tabsid="takeaway-hours-{{card.uid}}"
+                    id="tabs-takeaway-hours-{{card.uid}}">
+                    <p data-title="Takeaway Hours">Takeaway Hours</p>
+                </button>
+                {{/if}}
+            </div>
+            <!-- Tab content -->
+            <div class="wrapper_tabcontent">
+                {{#if (and card.hours card.reopenstatus1)}}
+                <div id="opening-hours-{{card.uid}}" class="tabcontent">
+                    <div class="innertab-content no-data ">
+                        <img src="https://www.deepbluerestaurants.com/locations/images/lock.png" alt="closed" width="150" height="100">
+                        <p>{{{card.reopenstatus1}}}</p>
+                    </div>
+                </div>
+                 {{else}}
+                  <div id="opening-hours-{{card.uid}}" class="tabcontent">
+                    <div class="innertab-content ">
+                        <p>{{{card.hours}}}</p>
+                    </div>
+                </div>
+                {{/if}}
+                {{#if (and card.deliveryHours card.reopenstatus2)}}
+                <div id="delivery-hours-{{card.uid}}" class="tabcontent">
+                    <div class="innertab-content no-data">
+                        <img src="https://www.deepbluerestaurants.com/locations/images/lock.png" alt="closed" width="150" height="100"> 
+                        <p>{{{card.reopenstatus2}}}</p>
+                    </div>
+                </div>
+                 {{else}}
+                  <div id="delivery-hours-{{card.uid}}" class="tabcontent">
+                    <div class="innertab-content">
+                        <p>{{{card.deliveryHours}}}</p>
+                    </div>
+                </div>
+                {{/if}}
+                {{#if (and card.takeoutHours card.reopenstatus3)}}
+                <div id="takeaway-hours-{{card.uid}}" class="tabcontent">
+                    <div class="innertab-content no-data">
+                <img src="https://www.deepbluerestaurants.com/locations/images/lock.png" alt="closed" width="150" height="100"> 
+                        <p>{{{card.reopenstatus3}}}</p>
+                    </div>
+                </div>
+                 {{else}}
+                  <div id="takeaway-hours-{{card.uid}}" class="tabcontent">
+                    <div class="innertab-content">
+                        <p>{{{card.takeoutHours}}}</p>
+                    </div>
+                </div>
+                {{/if}}
+            </div>
+
+        </div>
+    </section>
+    {{/if}}
+    {{/inline}}
+    {{!-- phone --}}
+    {{#*inline 'phone'}}
+    {{#if card.phone}}
+    <div class="HitchhikerLocationStandard-phone">
+                        <div class="phn-bx">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35">
+                                <g id="phone-icons" transform="translate(0 20.089)">
+                                    <circle id="Ellipse_2" data-name="Ellipse 2" cx="17.5" cy="17.5" r="17.5"
+                                        transform="translate(0 -20.089)" fill="#115eac" />
+                                    <path id="Icon_awesome-mobile-alt" data-name="Icon awesome-mobile-alt"
+                                        d="M8.5,0h-7A1.5,1.5,0,0,0,0,1.5v13A1.5,1.5,0,0,0,1.5,16h7A1.5,1.5,0,0,0,10,14.5V1.5A1.5,1.5,0,0,0,8.5,0ZM5,15a1,1,0,1,1,1-1A1,1,0,0,1,5,15Zm3.5-3.375A.376.376,0,0,1,8.125,12H1.875a.376.376,0,0,1-.375-.375V1.875A.376.376,0,0,1,1.875,1.5h6.25a.376.376,0,0,1,.375.375Z"
+                                        transform="translate(13 -10.089)" fill="#fff" />
+                                </g>
+                            </svg> <a href={{{card.phoneurl}}}>{{card.phone}}</a>
+                        </div>
+    </div>
+    {{/if}}
+    {{/inline}}
+    {{!-- image --}}
+    {{#*inline 'image'}}
+    {{#if card.image}}
+    <div class="HitchhikerLocationStandard-imgWrapper">
+        <img class="HitchhikerLocationStandard-img"
+            src="{{#unless (isNonRelativeUrl card.image)}}{{@root.relativePath}}/{{/unless}}{{card.image}}"
+            alt="{{#if card.altText}}{{card.altText}}{{/if}}" />
+    </div>
+    {{else}}
+    <div class="HitchhikerLocationStandard-imgWrapper">
+        <img class="HitchhikerLocationStandard-img"
+            src="https://www.deepbluerestaurants.com/sites/default/files/styles/large/public/images/c97243050f71774709f8907c8f264f67af6e48ed-2500x1667.jpg?itok=AR5obf9s"
+            alt="deepbluerestaurants" />
+    </div>    
+    {{/if}}
+    {{/inline}}
+    {{!-- distance --}}
+    {{#*inline 'distance'}}
+    {{#if card.distance}}
+    <div class="HitchhikerLocationStandard-distance">
+        {{card.distance}}
+    </div>
+    {{/if}}
+    {{/inline}}
+    {{#*inline 'ctaa'}}
+    {{#if (any (all card.CTA1 card.CTA1.url) (all card.CTA2 card.CTA2.url))}}
+    <div class="HitchhikerLocationStandard-ctasWrapper HitchhikerLocationCard-ctasWrapper">
+        {{> CTA card.CTA1 ctaName="primaryCTA" }}
+    </div>
+    {{/if}}
+    {{/inline}}
+    {{#*inline 'ctab'}}
+    {{#if (any (all card.CTA1 card.CTA1.url) (all card.CTA2 card.CTA2.url))}}
+    <div class="HitchhikerLocationStandard-ctasWrapper HitchhikerLocationCard-ctasWrapper">
+        {{> CUSTOM_DIRECTION_CTA card.CTA2 ctaName="secondaryCTA" }}
+    </div>
+    {{/if}}
+    {{/inline}}
+    {{#*inline 'ctac'}}
+    {{#if (any (all card.CTA1 card.CTA1.url) (all card.CTA2 card.CTA2.url) (all card.CTA3 card.CTA3.url))}}
+    <div class="HitchhikerLocationStandard-ctasWrapper HitchhikerLocationCard-ctasWrapper">
+        {{> CTA card.CTA3 ctaName="secondaryCTA" }}
+    </div>
+    {{/if}}
+    {{/inline}}
+    {{#*inline 'ctad'}}
+    {{#if (any (all card.CTA1 card.CTA1.url) (all card.CTA2 card.CTA2.url) (all card.CTA3 card.CTA3.url)(all card.CTA4
+    card.CTA4.url))}}
+    <div class="HitchhikerLocationStandard-ctasWrapper HitchhikerLocationCard-ctasWrapper order-now">
+        {{> CTA card.CTA4 ctaName="secondaryCTA" }}
+    </div>
+    {{/if}}
+    {{/inline}}
+    {{#*inline 'ctae'}}
+    {{#if (any (all card.CTA1 card.CTA1.url) (all card.CTA2 card.CTA2.url) (all card.CTA3 card.CTA3.url)(all card.CTA4
+    card.CTA4.url) (all card.CTA5 card.CTA5.url))}}
+    <div class="HitchhikerLocationStandard-ctasWrapper HitchhikerLocationCard-ctasWrapper order-now">
+        {{> CTA card.CTA5 ctaName="secondaryCTA" }}
+    </div>
+    {{/if}}
+    {{/inline}}
+    {{#*inline 'CUSTOM_DIRECTION_CTA'}}
+    {{#if (any url label staticlabel)}}
+    <div class="HitchhikerLocationStandard-{{ctaName}}">
+        <a class="get-direction-url HitchhikerCTA" href="javascript:void(0);" data-eventtype="{{eventType}}"
+            data-latitude="{{yextDisplayCoordinate.latitude}}" data-longitude="{{yextDisplayCoordinate.longitude}}"
+           data-name="{{placename}}" data-city="{{ctaaddress.city}}" data-country="{{ctaaddress.country}}" data-region="{{ctaaddress.region}}"
+            data-eventoptions='{{json eventOptions}}' {{#if ariaLabel}}aria-label="{{ariaLabel}}" {{/if}}>
+            {{#if (any iconName iconUrl)}}
+            <div class="HitchhikerCTA-iconWrapper">
+                <div class="HitchhikerCTA-icon">
+                    {{> icons/iconPartial
+                    iconName=iconName
+                    iconUrl=(relativePathHandler url=iconUrl relativePath=@root.relativePath)
+                    }}
+                </div>
+            </div>
+            {{/if}}
+            {{#if label}}
+            <div class='HitchhikerCTA-iconLabel'> 
+                {{label}}
+            </div>
+            {{else}}
+            <div class='HitchhikerCTA-iconLabel'> 
+                 {{staticlabel}}
+            </div>
+            {{/if}}
+        </a>
+    </div>
+    {{/if}}
+    {{/inline}}
+    {{#* inline "ordinalAndTitle"}}
+    {{#if (any displayOrdinal card.title)}}
+    <div class="HitchhikerLocationStandard-ordinalAndTitle">
+        {{#if displayOrdinal}}
+        <div class="HitchhikerLocationStandard-ordinal HitchhikerLocationCard-ordinal">
+            {{result.ordinal}}
+        </div>
+        {{/if}}
+        {{> title }}
+    </div>
+    {{/if}}
+    {{/inline}}
+    {{!-- hours --}}
+    {{#* inline "hours"}}
+    <div class="HitchhikerLocationStandard-hours">
+        {{#if card.hours }}
+        <div class="HitchhikerLocationStandard-infoCol">
+            {{#if card.hours}}
+            <div class="HitchhikerLocationStandard-hoursText">
+                {{{card.hours}}}
+            </div>
+            {{/if}}
+        </div>
+        {{/if}}
+    </div>
+    {{/inline}}
+    {{!-- delivery hours --}}
+    {{#* inline "deliveryHours"}}
+    <div class="HitchhikerLocationStandard-hours">
+        {{#if card.deliveryHours }}
+        <div class="HitchhikerLocationStandard-infoCol">
+            {{#if card.deliveryHours}}
+            <div class="HitchhikerLocationStandard-hoursText">
+                {{{card.deliveryHours}}}
+            </div>
+            {{/if}}
+        </div>
+        {{/if}}
+    </div>
+    {{/inline}}
+    {{!-- takeout hours --}}
+    {{#* inline "takeoutHours"}}
+    <div class="HitchhikerLocationStandard-hours">
+        {{#if card.takeoutHours }}
+        <div class="HitchhikerLocationStandard-infoCol">
+            {{#if card.takeoutHours}}
+            <div class="HitchhikerLocationStandard-hoursText">
+                {{{card.takeoutHours}}}
+            </div>
+            {{/if}}
+        </div>
+        {{/if}}
+    </div>
+    {{/inline}}
+    {{#* inline "title"}}
+    {{#if card.title}}
+    <div class="HitchhikerLocationStandard-title">
+        {{#if card.url}}
+        <a class="HitchhikerLocationStandard-titleLink js-Hitchhiker-title"
+            href="{{#unless (isNonRelativeUrl card.url)}}{{@root.relativePath}}/{{/unless}}{{card.url}}"
+            data-eventtype="TITLE_CLICK" data-eventoptions='{{json card.titleEventOptions}}' target={{#if
+            card.target}}"{{card.target}}"{{else}}"_top"{{/if}}>
+            {{{card.title}}}
+        </a>
+        {{else}}
+        {{{card.title}}}
+        {{/if}}
+    </div>
+    {{/if}}
+    {{/inline}}
+    {{! Displays the details for the card. If showMoreDetails has been configured,
+    this partial handles the show more toggle, show less toggle, truncated details,
+    and full details. If showMoreDetails has not been configured, it will display the
+    the regular card details.
+    }}
+    {{#*inline 'details'}}
+    {{#if card.details}}
+    <div class="HitchhikerLocationStandard-details">
+        {{#if showExcessDetailsToggle}}
+        <div class="HitchhikerLocationStandard-detailsText js-HitchhikerCard-detailsText">
+            {{truncatedDetails}}
+        </div>
+        {{/if}}
+        <div
+            class="HitchhikerLocationStandard-detailsText js-HitchhikerCard-detailsText{{#if showExcessDetailsToggle}} js-hidden{{/if}}">
+            {{card.details}}
+        </div>
+        {{#if showExcessDetailsToggle}}
+        <button class="HitchhikerCard-detailsToggle js-HitchhikerCard-detailsToggle">
+            {{card.showMoreDetails.showMoreText}}
+            <span>
+                {{> icons/builtInIcon iconName='chevron' classNames='Icon--sm Icon--collapseDown' }}
+            </span>
+        </button>
+        <button class="HitchhikerCard-detailsToggle js-HitchhikerCard-detailsToggle js-hidden">
+            {{card.showMoreDetails.showLessText}}
+            <span>
+                {{> icons/builtInIcon iconName='chevron' classNames='Icon--sm Icon--collapseUp' }}
+            </span>
+        </button>
+        {{/if}}
+    </div>
+    {{/if}}
+    {{/inline}}
+    {{#*inline 'closeCardButton'}}
+    <button
+        class="HitchhikerLocationStandard-closeCardButton HitchhikerLocationCard-closeCardButton js-HitchhikerLocationCard-closeCardButton">
+        <span class="HitchhikerLocationCard-closeCardButtonImageWrapper">
+            {{ close-card-svg }}
+        </span>
+        <span class="sr-only">Close Card</span>
+    </button>
+    {{/inline}}

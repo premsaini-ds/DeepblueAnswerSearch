@@ -1,0 +1,16 @@
+{
+  "default": "en_GB",
+  "localeConfig": {
+    "en_GB": {
+      // "fallback": [""], // allows you to specify locale fallbacks for this locale
+      // "translationFile": "<filepath>.po", // the filepath for the translation file
+      // "urlOverride": "", // provide an override for the url path for this locale if you want it to be different than specified in the urlFormat object
+      "experienceKey": "deep-blue-answer-search" //  the unique key of your search configuration for this locale
+    }
+  },
+  "urlFormat": {
+    "baseLocale": "{locale}/{pageName}.{pageExt}",
+    "default": "{pageName}.{pageExt}"
+  }
+}
+

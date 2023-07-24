@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="12" viewBox="0 0 20 12">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="20" height="12" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="bookatable" clip-path="url(#clip-path)">
+    <g id="bookatable-2" data-name="bookatable" transform="translate(-578 -1752)">
+      <path id="chef-platter" d="M13,7.06V5H11V7.06A9,9,0,0,0,3.06,15H2v2H22V15H20.94A9,9,0,0,0,13,7.06Z" transform="translate(576 1747)" fill="#fff"/>
+      <path id="Icon_material-restaurant-menu" data-name="Icon material-restaurant-menu" d="M6.337,8.94,7.512,7.764,4.6,4.852A1.665,1.665,0,0,0,4.6,7.2Zm2.816-.752a2.02,2.02,0,0,0,2.189-.573,1.846,1.846,0,0,0,.336-2.542,1.85,1.85,0,0,0-2.542.336A2.02,2.02,0,0,0,8.563,7.6L4.509,11.652l.586.586L7.957,9.384l2.858,2.858.586-.586L8.542,8.8Z" transform="translate(579.919 1750.758)" fill="#115eac"/>
+    </g>
+  </g>
+</svg>
